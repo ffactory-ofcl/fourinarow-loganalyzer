@@ -14,7 +14,7 @@ def main():
     print(" {}-\n".format('- ' * int(len(welcomeStr) / 2 + 1)))
 
     defaultFile = None
-    currentDir = '/'.join(os.path.realpath(__file__).split('/')[0:-2])
+    currentDir = os.getcwd()
     for fileStr in os.listdir(currentDir):
         if fileStr.endswith('.log'):
             defaultFile = fileStr
@@ -28,7 +28,7 @@ def main():
     fileIsOkay = False
     while not fileIsOkay:
         fileName = input(
-            'Which file you would like to process? {}\n  > '.format(
+            'Which file would you like to process? {}\n  > '.format(
                 defaultFileStr))
 
         if fileName == None or fileName == "":

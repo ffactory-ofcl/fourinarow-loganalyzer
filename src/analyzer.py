@@ -180,9 +180,11 @@ class Analyzer:
 
         gameDurations = []
 
-        # gameStartTimeStr = None
-        # searchingForRegex = None
-        splitLines = self.logs.splitlines()
+        splitLines = list(
+            filter(
+                lambda line: line[-15:-1] == 'GAME_START:YOU' or line[-14:-5]
+                == 'GAME_OVER', self.logs.splitlines(keepends=False)))
+
         for (index, line) in enumerate(splitLines):
             if line[25:28] != "MSG":
                 # Speed hack to filter lines that won't match regex anyway
